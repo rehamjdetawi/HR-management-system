@@ -1,38 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./index.css">
-    <!-- <script src="./app.js"></script> -->
     
-</head >
+
+</head>
+
 <body>
     <header class="container-header-grid">
-      <div>  <nav>
-            <a href="./index.html">Home</a>
-            <a href="">About</a>
-            <a href="./accounting.html">Accounting</a>
-        </nav>
-      </div>
-      <div>
-          <img src="./photos/c037f842a55fd6af2343ef7ae1681cc2.jpg" alt="hr logo">
-      </div>
+        <div>
+            <nav>
+                <a href="./index.html">Home</a>
+                <a href="">About</a>
+                <a href="./accounting.html">Accounting</a>
+            </nav>
+        </div>
+        <div>
+            <img src="./photos/c037f842a55fd6af2343ef7ae1681cc2.jpg" alt="hr logo">
+        </div>
     </header>
     <main>
-        <script src="./app.js"></script>
         
+        <section>
+            <form id="formId">
+                <fieldset>
+                    <legend>Emplooyee Information</legend>
+                    <label for="fullName">Full Name</label>
+                    <input type="text" name="fullName" id="fullName" required></br></br>
+                    <label for="department">Department:</label>
 
+                    <select name="department" id="department">
+                        <option value="Administration" checked>Administration</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Development">Development</option>
+                        <option value="Finance">Finance</option>
+                    </select></br></br>
+                    <label for="level">Level:</label>
+
+                    <select name="level" id="level">
+                        <option value="Junior">Junior</option>
+                        <option value="Mid-Senior">Mid-Senior</option>
+                        <option value="Senior">Senior</option>
+                    </select></br></br>
+                    <label for="imgurl">Image Url</label>
+                    <input type="text" name="imgurl" id="imgurl" /></br></br>
+                    <input type="submit" value="submit" id="submit" />
+                </fieldset>
+            </form>
+        </section>
+        <section id ="employeeCard"></section>
+        <script src="./app.js"></script>
     </main>
     <footer>
         <div> <a href="">facebook</a>
             <a href="">twitter</a>
-    </div>
+        </div>
         <p>&#169;2022 ASAC. All right recieved</p>
-       
-    
+
+
     </footer>
 </body>
+
 </html>
