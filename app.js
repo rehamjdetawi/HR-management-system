@@ -1,5 +1,7 @@
 let formid = document.getElementById('formId');
 let employeecard = document.getElementById('employeeCard');
+let allEmployee = [];
+checkLocalAndPush();
 function Employee(fullName, department, level,empidValue) {
     this.employeeId = empidValue;
     this.fullName = fullName; // it's an array 
@@ -9,13 +11,14 @@ function Employee(fullName, department, level,empidValue) {
     this.salAry = 0;
 }
 
-     Employee.prototype.generateid = () => {
+     generateid = () => {
          let a=Math.floor((1000 + Math.random()*9000));
      return a
    }
    
-Employee.prototype.render=function(){
-
+    function render (empo){
+        employeecard.innerHTML='';
+        for (let i = 0; i < empo.length; i++) {
     let div=document.createElement('div');
     employeecard.appendChild(div);
     div.style.backgroundColor="green";
@@ -28,15 +31,15 @@ Employee.prototype.render=function(){
 
     let img = document.createElement('img');
     div.appendChild(img);
-    img.setAttribute('src',this.imagePath);
-    img.setAttribute('alt',this.fullName);
+    img.setAttribute('src',empo[i].imagePath);
+    img.setAttribute('alt',empo[i].fullName);
     img.style.width="150px"
     img.style.height="150px";
 
     let h4=document.createElement('h4');
     div.appendChild(h4);
-    h4.textContent=`Name : ${this.fullName} - ID: ${this.generateid()}     -  Department: ${this.departMent} - Level:${this.leVel}`;
-
+    h4.textContent=`Name : ${empo[i].fullName} - ID: ${generateid()}     -  Department: ${empo[i].departMent} - Level:${empo[i].leVel}`;
+  }
 }
 
 function cardSubmit(event) {
@@ -45,11 +48,49 @@ function cardSubmit(event) {
     let name = event.target.fullName.value;
     let deb = event.target.department.value;
     let Level = event.target.level.value;
-    console.log(name);
 
     let emp = new Employee(name, deb, Level);
-    emp.render();  
+    // emp.render(); 
+    
+    
+    allEmployee.push(emp);
+
+    let jsonArr = toJSON();
+
+    saveToLocalS(jsonArr);
+
+    render(readFromLocalS());
 }
+function checkLocalAndPush() {
+    if (allEmployee.length == 0) {
+        let arr = readFromLocalS();
+        if (arr.length != 0) {
+            allEmployee = arr;
+        }
+    }
+}
+function readFromLocalS() {
+    let jsonArr = localStorage.getItem('employeeCard');
+    let arr = JSON.parse(jsonArr);
+    if (arr !== null) {
+        return arr;
+    } else {
+        return [];
+    }
+}
+
+function toJSON() {
+    let jsonArray = JSON.stringify(allEmployee);
+    return jsonArray;
+}
+
+
+function saveToLocalS(jsonArray) {
+    localStorage.setItem('employeeCard', jsonArray)
+}
+
+render(readFromLocalS());
+
 formid.addEventListener('submit', cardSubmit);
 
 
